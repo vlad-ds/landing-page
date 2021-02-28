@@ -3,7 +3,6 @@ import streamlit.components.v1 as components
 import requests
 import numpy as np
 import pandas as pd
-from scipy import stats
 import matplotlib.pyplot as plt
 from map import get_map
 import random
