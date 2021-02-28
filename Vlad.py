@@ -12,6 +12,7 @@ import random
 '''
 # Hi, I'm Vlad.
 ### Let's [work together](mailto:vlad.datasci@gmail.com).
+##### Best viewed on Desktop. Mobile version coming soon!
 ___
 '''
 
