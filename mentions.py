@@ -8,6 +8,11 @@ import json
 
 API_KEY = os.environ.get('API_KEY')
 
+if API_KEY:
+    print(f'API_KEY of length {len(API_KEY)} retrieved.')
+else:
+    print('WARNING: Could not retrieve API KEY.')
+
 def get_mentions(keyword, delta=15):
     '''Access news API to get a topic's mentions and headlines
     in the past <delta> days.'''

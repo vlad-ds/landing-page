@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from map import get_map
+from scipy import stats
 import random
 
 
