@@ -6,7 +6,7 @@ import numpy as np
 import os, shutil
 import json
 
-API_KEY = ''
+API_KEY = os.environ.get('API_KEY')
 
 def get_mentions(keyword, delta=15):
     '''Access news API to get a topic's mentions and headlines
