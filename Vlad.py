@@ -12,7 +12,6 @@ import random
 '''
 # Hi, I'm Vlad.
 ### Let's [work together](mailto:vlad.datasci@gmail.com).
-##### Best viewed on Desktop. Mobile version coming soon!
 ___
 '''
 
@@ -51,7 +50,7 @@ fig.update_layout(title='Cats vs. Dogs in News Headlines (Past 15 days)',
                    yaxis_title='Headlines',
                    template='ggplot2')
 
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width=True)
 
 
 topic = st.radio('Random headline', ('cats', 'dogs'))
@@ -139,8 +138,10 @@ git_link = 'https://github.com/vlad-ds'
 
 st.write("## I love **programming**")
 
-html = f"<a href='{git_link}'><img src={img}></a>"
-st.markdown(html, unsafe_allow_html=True)
+#html = f"<a href='{git_link}'><img src={img}></a>"
+#st.markdown(html, unsafe_allow_html=True)
+st.markdown("[My Github](https://github.com/vlad-ds)")
+st.image('https://i.ibb.co/sPkpLk8/Screenshot-from-2021-02-27-15-05-17.png')
 
 
 '''
@@ -198,7 +199,7 @@ df
 '''
 map_ = get_map()
 
-st.pydeck_chart(map_)
+st.pydeck_chart(map_, use_container_width=False)
 
 '''
 ### I speak 🇬🇧 🇮🇹 🇪🇸 🇩🇪 🇷🇴 🇫🇷

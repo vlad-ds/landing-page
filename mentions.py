@@ -11,7 +11,15 @@ API_KEY = os.environ.get('API_KEY')
 if API_KEY:
     print(f'API_KEY of length {len(API_KEY)} retrieved.')
 else:
-    print('WARNING: Could not retrieve API KEY.')
+    print('Retrieving API KEY locally.')
+    try:
+        with open('.env') as file:
+            API_KEY = file.read().split('=')[1].strip()
+            print(f'API_KEY of length {len(API_KEY)} retrieved.')
+    except:
+        print("Error. Could not find local API KEY.")
+
+
 
 def get_mentions(keyword, delta=15):
     '''Access news API to get a topic's mentions and headlines
