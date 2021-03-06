@@ -216,8 +216,9 @@ df
 ## I've lived in a few places
 '''
 
-m = get_folium_map()
-folium_static(m, width=500)
+#m = get_folium_map()
+#folium_static(m, width=500)
+st.image('https://i.ibb.co/0QnXVx4/Screenshot-from-2021-03-06-14-41-24.png')
 
 '''
 ### I speak 🇬🇧 🇮🇹 🇪🇸 🇩🇪 🇷🇴 🇫🇷
