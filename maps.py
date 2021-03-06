@@ -2,6 +2,7 @@ import pandas as pd
 import pydeck
 import altair as alt
 import folium
+from vega_datasets import data
 
 COLOR_BREWER_BLUE_SCALE = [
     [240, 249, 232],
@@ -13,18 +14,19 @@ COLOR_BREWER_BLUE_SCALE = [
 ]
 
 mydf = pd.DataFrame({
-    'name': ['Constanta, Romania', 'Turin, Italy', 'Madrid, Spain', 'Copenhagen', 'Berlin'],
+    'name': ['Constanta', 'Turin', 'Madrid', 'Copenhagen', 'Berlin'],
     'lat': [45.1598, 45.0703, 40.4168, 55.6761, 52.5200],
     'long': [28.6348, 7.6869, -3.7038, 12.5683, 13.40]
     })
 
-descriptions = ['I was born here!',
-               'I grew up and earned my degrees here.',
-               'I studied psychology here for one year.',
-               'I worked at the IT university.',
-               'Home since July 2020.']
+descriptions = ['Was born here!',
+               'Grew up here.',
+               'Studied psychology§',
+               'Worked at the IT university',
+               'Home since 2020']
 
 mydf['descr'] = descriptions
+mydf['tooltip'] = mydf.name + ' | ' + mydf.descr
 
 def get_map():
 
@@ -51,22 +53,36 @@ def get_map():
     return r
 
 def get_altair_map():
-    map_ = alt.Chart(mydf).mark_circle().encode(
-    longitude='long',
-    latitude='lat',
-    size=alt.value(50),
-    tooltip='name'
+    countries = alt.topo_feature(data.world_110m.url, 'countries')
+
+    points = alt.Chart(mydf).mark_circle().encode(
+        longitude='long',
+        latitude='lat',
+        size=alt.value(50),
+        tooltip='tooltip'
     ).project(
-    type= 'mercator',
-    scale= 350,                          # Magnify
-    center= [20,50],                     # [lon, lat]
-    clipExtent= [[0, 0], [400, 300]],    # [[left, top], [right, bottom]]
+        type= 'mercator',
+        scale= 350,
+        center= [20,50],
+        clipExtent= [[0, 0], [400, 300]],
     ).properties(
-    width=500,
-    height=400
+        width=500,
+        height=400
     )
 
-    return map_
+    background = alt.Chart(countries).mark_geoshape(
+        fill='#CCCCCC',
+        stroke='white'
+    ).project(
+        type= 'mercator',
+        scale= 350,                          # Magnify
+        center= [20,50],                     # [lon, lat]
+        clipExtent= [[0, 0], [400, 300]],    # [[left, top], [right, bottom]]
+    ).properties(
+        width=400, height=300
+    )
+
+    return background + points
 
 
 def get_folium_map():

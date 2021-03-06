@@ -4,7 +4,7 @@ import requests
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from maps import get_folium_map
+from maps import get_folium_map, get_altair_map
 from streamlit_folium import folium_static
 from scipy import stats
 import random
@@ -218,7 +218,10 @@ df
 
 #m = get_folium_map()
 #folium_static(m, width=500)
-st.image('https://i.ibb.co/0QnXVx4/Screenshot-from-2021-03-06-14-41-24.png')
+#st.image('https://i.ibb.co/0QnXVx4/Screenshot-from-2021-03-06-14-41-24.png')
+
+m = get_altair_map()
+st.write(m, use_container_width=True)
 
 '''
 ### I speak 🇬🇧 🇮🇹 🇪🇸 🇩🇪 🇷🇴 🇫🇷
