@@ -52,13 +52,13 @@ def get_map():
 
     return r
 
-def get_altair_map():
+def get_altair_map(tip_size=500):
     countries = alt.topo_feature(data.world_110m.url, 'countries')
 
     points = alt.Chart(mydf).mark_circle().encode(
         longitude='long',
         latitude='lat',
-        size=alt.value(50),
+        size=alt.value(tip_size),
         tooltip='tooltip'
     ).project(
         type= 'mercator',
