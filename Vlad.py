@@ -4,7 +4,8 @@ import requests
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from map import get_map
+from maps import get_folium_map
+from streamlit_folium import folium_static
 from scipy import stats
 import random
 
@@ -68,47 +69,53 @@ else:
 '''
 
 '''
-## I'm into **data science**
+## I'm into **Data Engineering**
 
 ```bash
 >> history | tail -n 5
 ```
 '''
 
-if st.checkbox('2021 - My Next Adventure?'):
+if st.checkbox('🪐 2021 - My Next Adventure?', value=1):
     st.write('''
-      I am open for work in Berlin or remotely. Scroll down to see **what I'm looking for.**
+      I am open for work in Berlin or remotely. Scroll down to see **what I can offer**.
       ''')
 
-if st.checkbox('2021 - Data Science Bootcamp @Le Wagon Berlin'):
+if st.checkbox('💻 2021 - Data Science Bootcamp @Le Wagon Berlin', value=0):
     st.write('''
-      Learning data science at Le Wagon Berlin
-      has boosted my confidence and skills. I learned about machine learning,
-      neural networks, and data engineering.
-      For me the best part was learning how to structure and package
-      Python code and how to build, deploy and monitor machine learning pipelines
-      in the cloud.
-      I also met a host of wonderful people, who have inspired me to keep striving.
+      For my final project, I am collaborating with my teammates
+      to build **Find Your Dream Job**, a tool that allows job hunters to analyse job postings
+      and gain insights on the job market. After co-creating and pitching the project,
+      my contributions include:
+
+      * Scraping job offers with **Selenium Web Driver**
+      * Converging data sources into an **SQL** database
+      * Designing the **ETL pipeline** to automate extraction, processing and analysis
+      * **Packaging** and **refactoring** our code (including NLP algorithms)
+      * Deploying the backend with **Docker** and **Google Cloud Platform**
+      * Designing the API with **FastAPI** and connecting it to the frontend
+
+      I also met a host of wonderful people who have inspired me to keep learning and striving.
       ''')
 
-if st.checkbox('2020 - Mobility Research @One Health (Remote)'):
+if st.checkbox('🚅 2020 - Mobility Research @One Health (Remote)'):
     st.write('''
       This project taught me the importance of writing flexible, reusable code.
       I analysed the impact of the pandemic lockdowns on Italian mobility in 2020.
-      I had data on over 10 million trips from cellphone records (XDR).
+      I managed data on over 10 million trips from cellphone records (XDR).
       I programmed an algorithm that computed the difference in mobility from a
-      baseline rate. Then I packaged the ETL pipeline in a Python library and wrote
-      extensive documentation.
+      baseline rate. Then I packaged the **ETL pipeline** in a **Python** library and wrote
+      extensive **documentation**.
         ''')
 
-if st.checkbox('2019 - Data Science for Social Good @ISI Foundation'):
+if st.checkbox('📊 2019 - Data Science for Social Good @ISI Foundation'):
     st.write('''
-      Being at ISI felt like doing a PhD in one year.
+      Being at ISI felt like doing a whole PhD in one year.
 
       I studied the scientific response to COVID-19 and other epidemic emergencies.
 
-      I collected data by scraping the web, calling APIs, and downloading a massive
-      database of scientific publications from Amazon S3.
+      I collected data by scraping the web, calling APIs, and using **MongoDB** to
+      manage a massive database of scientific publications.
 
       I cleaned, preprocessed and transformed the data. I ran complex statistical
       anaylses. I surveyed the literature and reproduced complex algorithms. I worked
@@ -118,10 +125,10 @@ if st.checkbox('2019 - Data Science for Social Good @ISI Foundation'):
         ''')
 
 
-if st.checkbox('2018 - Social Network Analysis @Turin'):
+if st.checkbox('🧑🏻‍🤝‍🧑🏻  2018 - Social Network Analysis @Turin'):
     st.write('''
       As a sociology student, I was very excited about a course that taught
-      Game Theory and Social Network Analysis. I had learned Python on my own,
+      Game Theory and **Social Network Analysis**. I had learned **Python** on my own,
       and now was the perfect chance to apply it.
 
       I met a professor who had gathered data on the social interactions of
@@ -137,11 +144,21 @@ img = 'https://i.ibb.co/sPkpLk8/Screenshot-from-2021-02-27-15-05-17.png'
 git_link = 'https://github.com/vlad-ds'
 
 st.write("## I love **programming**")
+st.markdown("[My Github](https://github.com/vlad-ds).")
 
-#html = f"<a href='{git_link}'><img src={img}></a>"
-#st.markdown(html, unsafe_allow_html=True)
-st.markdown("[My Github](https://github.com/vlad-ds)")
-st.image('https://i.ibb.co/sPkpLk8/Screenshot-from-2021-02-27-15-05-17.png')
+'''
+My projects include:
+
+* [**Find Your Dream Job**](https://github.com/mizzle-toe/find-your-dream-job). Automatically extract,
+store and analyse job offers. Use NLP techniques to find relevant job postings and identify skill
+requirements.
+* [**Spotify History**](https://github.com/vlad-ds/spoty-records). Extract your Spotify streaming history.
+Use the Spotify API to obtain song features.
+* [**Glasdoor Job Scraper**](https://github.com/vlad-ds/glassdoor-scrape). With Selenium Web Driver.
+* [**Poetry Website**](https://lines-in-the-water.herokuapp.com/). A Node & Express app to store my poetry.
+'''
+
+#st.image('https://i.ibb.co/sPkpLk8/Screenshot-from-2021-02-27-15-05-17.png')
 
 
 '''
@@ -174,8 +191,9 @@ df_chi
 
 chi2 = ((df_chi_exp - df_chi_red)**2 / df_chi_exp).sum().sum()
 pval = 1 - stats.chi2.cdf(chi2, 1)
+p_display = str(round(pval, 2)) if pval >= .01 else "< 0.01"
 
-st.text(f"The chi2 value is {round(chi2, 2)}, the p-value is {round(pval, 2)}")
+st.text(f"The chi2 value is {round(chi2, 2)}, the p-value is {p_display}")
 
 verdict = 'related' if pval < .05 else 'unrelated'
 
@@ -197,9 +215,9 @@ df
 '''
 ## I've lived in a few places
 '''
-map_ = get_map()
 
-st.pydeck_chart(map_, use_container_width=False)
+m = get_folium_map()
+folium_static(m, width=500)
 
 '''
 ### I speak 🇬🇧 🇮🇹 🇪🇸 🇩🇪 🇷🇴 🇫🇷
@@ -207,34 +225,32 @@ st.pydeck_chart(map_, use_container_width=False)
 
 '''
 ## Things that inspire me
-[Effective Altruism](https://www.effectivealtruism.org/) |
-[Deep Work](https://www.goodreads.com/book/show/25744928-deep-work) |
-[There is no speed limit](https://sive.rs/kimo) |
-[The Pragmatic Programmer](https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer)
+[Effective Altruism](https://www.effectivealtruism.org/) | [There is no speed limit](https://sive.rs/kimo) |
+[The Pragmatic Programmer](https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer) |
+[Deep Work](https://www.goodreads.com/book/show/25744928-deep-work)
 
 I am passionate about teaching, especially when it involves breaking apart
 difficult subjects.
 
-My other passion is writing essays and poetry.
-
+I write essays and poetry.
 '''
 
 '''
-## What I'm looking for
+## What I can offer
 
 I am **open to work** in Berlin or remotely.
 
 I am looking for a place where I can be challenged to improve every day.
 Team work and mentorship are very important to me.
 
-I love building robust, scalable systems to retrieve, transform and analyse data.
+I love building robust and scalable systems to retrieve, transform and analyse data.
 I aspire to grow into the role of **Data Engineer**.
 
-I am currently working on **Find Your Dream Job**, a tool that will allow job hunters
-to gather job postings and extract insights on the job market. This is my final
-project for the Le Wagon Data Science Bootcamp.
+I am currently working on [**Find Your Dream Job**](https://github.com/mizzle-toe/find-your-dream-job),
+a tool that will allow job hunters to gather job postings and extract insights on the job market. This is my final
+project for the Le Wagon Data Science Bootcamp. [Stay tuned](mailto:vlad.datasci@gmail.com)!
 
-My next objective is to earn the **AWS Cloud Associate** certification.
+My next objective is to earn the **AWS Certified Developer** certification.
 
 '''
 
