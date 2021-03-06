@@ -46,7 +46,7 @@ fig.add_trace(go.Scatter(
     connectgaps=True
 ))
 
-fig.update_layout(title='Cats vs. Dogs in News Headlines (Past 15 days)',
+fig.update_layout(title='Cats vs. Dogs Headlines (Past 15 days)',
                    xaxis_title='Day',
                    yaxis_title='Headlines',
                    template='ggplot2')
@@ -76,7 +76,7 @@ else:
 ```
 '''
 
-if st.checkbox('🪐 2021 - My Next Adventure?', value=1):
+if st.checkbox('🚀 2021 - My Next Adventure?', value=1):
     st.write('''
       I am open for work in Berlin or remotely. Scroll down to see **what I can offer**.
       ''')
@@ -125,7 +125,7 @@ if st.checkbox('📊 2019 - Data Science for Social Good @ISI Foundation'):
         ''')
 
 
-if st.checkbox('🧑🏻‍🤝‍🧑🏻  2018 - Social Network Analysis @Turin'):
+if st.checkbox('👬  2018 - Social Network Analysis @Turin'):
     st.write('''
       As a sociology student, I was very excited about a course that taught
       Game Theory and **Social Network Analysis**. I had learned **Python** on my own,
@@ -215,10 +215,6 @@ df
 '''
 ## I've lived in a few places
 '''
-
-#m = get_folium_map()
-#folium_static(m, width=500)
-#st.image('https://i.ibb.co/0QnXVx4/Screenshot-from-2021-03-06-14-41-24.png')
 
 m = get_altair_map()
 st.write(m, use_container_width=True)

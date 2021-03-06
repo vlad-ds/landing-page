@@ -52,7 +52,7 @@ def get_map():
 
     return r
 
-def get_altair_map(tip_size=500):
+def get_altair_map(tip_size=400):
     countries = alt.topo_feature(data.world_110m.url, 'countries')
 
     points = alt.Chart(mydf).mark_circle().encode(
