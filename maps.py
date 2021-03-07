@@ -21,7 +21,7 @@ mydf = pd.DataFrame({
 
 descriptions = ['Was born here!',
                'Grew up here.',
-               'Studied psychology§',
+               'Studied psychology',
                'Worked at the IT university',
                'Home since 2020']
 
