@@ -20,10 +20,14 @@ ___
 ## Let's start with the most important thing...
 '''
 
-from mentions import get_mentions, plot_mentions
+from mentions import get_mentions
 
 dogs = get_mentions('dogs')
 cats = get_mentions('cats')
+
+if not dogs and cats:
+  show_headlines = False
+
 dogs_mentions = dogs['mentions']
 cats_mentions = cats['mentions']
 dates = [x[0] for x in dogs_mentions]

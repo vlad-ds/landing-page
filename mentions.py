@@ -19,8 +19,6 @@ else:
     except:
         print("Error. Could not find local API KEY.")
 
-
-
 def get_mentions(keyword, delta=15):
     '''Access news API to get a topic's mentions and headlines
     in the past <delta> days.'''
@@ -33,19 +31,14 @@ def get_mentions(keyword, delta=15):
     if not os.path.exists(cache_folder):
         os.mkdir(cache_folder)
 
-
+    #load from cache if available
     if filecache in os.listdir(cache_folder):
         print('Loading from cache')
         with open(os.path.join(cache_folder, filecache)) as file:
             result = json.load(file)
             return result
-    else:
-        #clearing old files (on the same keyword) from cache
-        for file in os.listdir(cache_folder):
-            if file.startswith(keyword):
-                path = os.path.join(cache_folder, file)
-                os.remove(path)
-
+    
+    #did not load from cache: try to retrieve fresh data
     month = timedelta(days=delta)
     day = timedelta(days=1)
 
@@ -86,18 +79,24 @@ def get_mentions(keyword, delta=15):
 
 
     if failed_requests <= delta // 3:
+        print('Clearing cache...')
+        #clearing old files (on the same keyword) from cache
+        for file in os.listdir(cache_folder):
+            path = os.path.join(cache_folder, file)
+            if file.startswith(keyword):
+                os.remove(path)
+        #¢aching fresh results
         print('Caching results...')
         with open(os.path.join(cache_folder, filecache), 'w') as file:
             json.dump(result, file)
     else:
+        #if we could not get fresh results, we load from cache
         print('Too many null results. Not caching.')
-
+        print('Loading from cache...')
+        last_file = [file for file in os.listdir(cache_folder)
+                     if file.startswith(keyword)
+                     ][0]
+        with open(os.path.join(cache_folder, last_file)) as file:
+            result = json.load(file)
+            return result
     return result
-
-def plot_mentions(mentions_dict):
-    date, count = zip(*mentions)
-    fig = go.Figure(data=go.Scatter(x=date, y=count))
-    fig.update_layout(title='News Headlines Mentioning Dogs (Past 15 days)',
-                   xaxis_title='Day',
-                   yaxis_title='Doglines')
-    return fig
