@@ -80,6 +80,10 @@ else:
 ```
 '''
 
+'''
+*Click on the checkbox to find out more.*
+'''
+
 if st.checkbox('🚀 2021 - My Next Adventure?', value=1):
     st.write('''
       I am open for work in Berlin or remotely. Scroll down to see **what I can offer**.
@@ -159,7 +163,6 @@ requirements.
 * [**Spotify History**](https://github.com/vlad-ds/spoty-records). Extract your Spotify streaming history.
 Use the Spotify API to obtain song features.
 * [**Glasdoor Job Scraper**](https://github.com/vlad-ds/glassdoor-scrape). With Selenium Web Driver.
-* [**Poetry Website**](https://lines-in-the-water.herokuapp.com/). A Node & Express app to store my poetry.
 '''
 
 #st.image('https://i.ibb.co/sPkpLk8/Screenshot-from-2021-02-27-15-05-17.png')
