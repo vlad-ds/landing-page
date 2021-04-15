@@ -152,6 +152,7 @@ img = 'https://i.ibb.co/sPkpLk8/Screenshot-from-2021-02-27-15-05-17.png'
 git_link = 'https://github.com/vlad-ds'
 
 st.write("## I love **programming**")
+st.markdown("[My portfolio](https://www.notion.so/Vlad-s-Portfolio-f415a4b6f31746c9a61965a265c3f7ec).")
 st.markdown("[My Github](https://github.com/vlad-ds).")
 
 '''
@@ -160,6 +161,7 @@ My projects include:
 * [**Find Your Dream Job**](https://github.com/mizzle-toe/find-your-dream-job). Automatically extract,
 store and analyse job offers. Use NLP techniques to find relevant job postings and identify skill
 requirements.
+* [**GDELT Conflict Dataset 1.0**](https://github.com/vlad-ds/gdelt-conflict). Using Google BigQuery to source data on more than eighty million conflict and violence events in the last forty years.
 * [**Spotify History**](https://github.com/vlad-ds/spoty-records). Extract your Spotify streaming history.
 Use the Spotify API to obtain song features.
 * [**Glasdoor Job Scraper**](https://github.com/vlad-ds/glassdoor-scrape). With Selenium Web Driver.
@@ -212,10 +214,10 @@ st.markdown(f"At 95% significance level, smoking and jogging seem to be **{verdi
 '''
 
 df = pd.DataFrame({
-  'Course': ['Data Science Bootcamp', 'Full Stack Developer Bootcamp',
+  'Course': ['Data Engineer with Python', 'Data Science Bootcamp', 'Full Stack Developer Bootcamp',
             'MySQL Bootcamp', 'Tableau Fundamentals', 'Java Summer Course'],
-  'School': ['Le Wagon Berlin', 'FreeCodeCamp', 'Udemy', 'Visualitics', 'ForIT'],
-  }, index=[2021, 2020, 2020, 2019, 2017])
+  'School': ['Datacamp', 'Le Wagon Berlin', 'FreeCodeCamp', 'Udemy', 'Visualitics', 'ForIT'],
+  }, index=[2021, 2021, 2020, 2020, 2019, 2017])
 
 df
 
@@ -247,15 +249,11 @@ I write essays and poetry.
 
 I am **open to work** in Berlin or remotely.
 
-I am looking for a place where I can be challenged to improve every day.
+I am looking for a place where I will be challenged to improve every day.
 Team work and mentorship are very important to me.
 
 I love building robust and scalable systems to retrieve, transform and analyse data.
 I aspire to grow into the role of **Data Engineer**.
-
-I am currently working on [**Find Your Dream Job**](https://github.com/mizzle-toe/find-your-dream-job),
-a tool that will allow job hunters to gather job postings and extract insights on the job market. This is my final
-project for the Le Wagon Data Science Bootcamp. [Stay tuned](mailto:vlad.datasci@gmail.com)!
 
 My next objective is to earn the **AWS Certified Developer** certification.
 

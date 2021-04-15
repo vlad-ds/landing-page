@@ -37,7 +37,7 @@ def get_mentions(keyword, delta=15):
         with open(os.path.join(cache_folder, filecache)) as file:
             result = json.load(file)
             return result
-    
+
     #did not load from cache: try to retrieve fresh data
     month = timedelta(days=delta)
     day = timedelta(days=1)
@@ -71,7 +71,8 @@ def get_mentions(keyword, delta=15):
             heads = [(art['title'], art['url']) for art in resp.json().get('articles')]
             result['headlines'] += heads
         else:
-            print('Request failed')
+            print(f'Request failed. Status {resp.status_code}')
+            print(resp.text)
             failed_requests += 1
             result['mentions'].append((x_date, None))
 
